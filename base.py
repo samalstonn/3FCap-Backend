@@ -1,12 +1,18 @@
 from flask import Flask
 from flask_cors import CORS
 from flask_restx import Api
+from etrade.login import oauth
 
-api = Api(prefix="/api/v1", doc="/api/v1/docs")
+api = Api()
 
 app = Flask(__name__)
 api.init_app(app)
 CORS(app)
+
+
+@app.route("/portfolio")
+def get_portfolio():
+    return oauth()
 
 
 @app.route("/profile")
