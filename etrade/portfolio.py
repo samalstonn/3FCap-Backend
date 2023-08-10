@@ -1,9 +1,12 @@
-class Portfolio:
-    def __init__(self, session):
-        """
-        Initialize Accounts object with session and account information
+import pymongo
+import etrade.logins as logins
 
-        :param session: authenticated session
-        """
-        self.session = session
-        self.account = {}
+myclient = pymongo.MongoClient(logins.database)
+
+mydb = myclient["mydatabase"]
+mycol = mydb["new_portfolio"]
+
+
+def portfolio_update():
+    res = list(mycol.find({}, projection={"_id": False}))
+    return res

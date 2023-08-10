@@ -1,7 +1,8 @@
 from flask import Flask
 from flask_cors import CORS
 from flask_restx import Api
-from etrade.login import oauth
+
+from etrade.portfolio import portfolio_update
 
 api = Api()
 
@@ -12,7 +13,7 @@ CORS(app)
 
 @app.route("/portfolio")
 def get_portfolio():
-    return oauth()
+    return portfolio_update()
 
 
 @app.route("/profile")
